@@ -13,8 +13,29 @@
 
     <bean id="dbcpDataSource"
           class="org.apache.commons.dbcp2.BasicDataSource"
-          p:driverClassName="${DRV}"
-          p:url="${URL}"
-          p:username="${USR}"
-          p:password="${PWD}" />
+          p:driverClassName="org.mariadb.jdbc.Driver"
+          p:url="jdbc:mariadb://mariadb.cmhqke6zpvyh.us-east-2.rds.amazonaws.com:3306/playground"
+          p:username="master"
+          p:password="bigdata2020" />
+
+<!--     mybatis : sqlSession -->
+<!--     myBatis3 설정 #1 -->
+<!--     성적처리프로그램 -->
+     <bean id="sqlSessionFactory"
+     class="org.mybatis.spring.SqlSessionFactoryBean"
+     p:dataSource-ref="dbcpDataSource"
+     p:mapperLocations="classpath:mybatis3/*Mapper.xml" />
+<!--     Member -->
+<!--    <bean id="sqlSessionFactory"-->
+<!--          class="org.mybatis.spring.SqlSessionFactoryBean"-->
+<!--          p:mapperLocations="classpath:mybatis3/MemberMapper.xml"-->
+<!--          p:dataSource-ref="dbcpDataSource"/>-->
+
+    <!-- myBatis3 설정 #2 -->
+    <bean id="sqlSession"
+          class="org.mybatis.spring.SqlSessionTemplate">
+    <constructor-arg index="0"
+                     ref="sqlSessionFactory"/>
+
+</bean>
 </beans>
