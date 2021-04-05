@@ -20,7 +20,7 @@
     <c:forEach var="sj" items="${sjlist}">
         <tr>
             <th>${sj.sjno}</th>
-            <th>${sj.name}</th>
+            <th><a href="/sungjukview?sjno=${sj.sjno}"></a>${sj.name}</th>
             <th>${sj.kor}</th>
             <th>${sj.eng}</th>
             <th>${sj.mat}</th>

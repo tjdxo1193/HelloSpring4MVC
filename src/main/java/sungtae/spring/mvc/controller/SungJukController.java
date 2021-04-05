@@ -59,8 +59,17 @@ public class SungJukController {
         return mv;
     }
 
+    // sungjuklist.jsp에서
+    // 목록에서 학생이름을 클릭하면 학생번호sjno를 서버로 전송
+    //
     @GetMapping("/sungjukview")
-    public ModelAndView sungjukview(){
-        return null;
+    public ModelAndView sungjukview(String sjno){
+        ModelAndView mv =new ModelAndView();
+        mv.setViewName("sungjukview");
+        // 뷰 리졸버의 머리글 + 뷰이름 + 뷰리졸버의 꼬리글
+        // WEB-INF/jsp/ + sungjukview + .jsp
+
+        mv.addObject("sj", sjsrv13.readOneSungJuk(sjno));
+        return mv;
     }
 }

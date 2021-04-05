@@ -4,12 +4,11 @@
        xmlns:p="http://www.springframework.org/schema/p"
        xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-       http://www.springframework.org/schema/beans/spring-beans.xsd
-       http://www.springframework.org/schema/util
-       https://www.springframework.org/schema/util/spring-util.xsd">
-<!--  jdbc properties  -->
+       http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!-- jdbc properties -->
     <util:properties id="jdbc"
-                     location="/WEB-INF/jdbc.properties" />
+                     location="WEB-INF/jdbc.properties"/>
 
     <bean id="dbcpDataSource"
           class="org.apache.commons.dbcp2.BasicDataSource"
@@ -21,21 +20,14 @@
 <!--     mybatis : sqlSession -->
 <!--     myBatis3 설정 #1 -->
 <!--     성적처리프로그램 -->
-     <bean id="sqlSessionFactory"
-     class="org.mybatis.spring.SqlSessionFactoryBean"
-     p:dataSource-ref="dbcpDataSource"
-     p:mapperLocations="classpath:mybatis3/*Mapper.xml" />
-<!--     Member -->
-<!--    <bean id="sqlSessionFactory"-->
-<!--          class="org.mybatis.spring.SqlSessionFactoryBean"-->
-<!--          p:mapperLocations="classpath:mybatis3/MemberMapper.xml"-->
-<!--          p:dataSource-ref="dbcpDataSource"/>-->
+    <bean id="sqlSessionFactory"
+          class="org.mybatis.spring.SqlSessionFactoryBean"
+          p:dataSource-ref="dbcpDataSource"
+          p:mapperLocations="classpath:mybatis3/*Mapper.xml" />
 
     <!-- myBatis3 설정 #2 -->
     <bean id="sqlSession"
           class="org.mybatis.spring.SqlSessionTemplate">
-    <constructor-arg index="0"
-                     ref="sqlSessionFactory"/>
-
-</bean>
+        <constructor-arg ref="sqlSessionFactory" index="0" />
+    </bean>
 </beans>

@@ -37,8 +37,7 @@ public class MemberService04 implements MemberService{
 
     // 회원정보 조회 (아이디, 등급, 가입일)
     public List<MemberVO> readMember() {
-
-        return null;
+        return mdao03.selectMember();
     }
 
     // 회원정보 상세조회 (아이디로 검색)

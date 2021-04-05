@@ -31,8 +31,21 @@ public class MemberController {
     @GetMapping("/memberlist")
     public ModelAndView memberlist(){
         ModelAndView mv = new ModelAndView();
+        mv.setViewName("memberlist");  //WEB-INF/jsp/memberlist.jsp
 
 
+        mv.addObject("mvos", msrv04.readMember());
+
+        return mv;
+    }
+    // memberlist.jsp에서
+    // 목록에서 회원이름을 클릭하면 회원번호를 서버로 전송
+    //
+    @GetMapping("/memberlist")
+    public ModelAndView memberview(String mv){
+        ModelAndView mv =new ModelAndView();
+        mv.setViewName("sungjukview");
+        mv.addObject("mv", msrv04.readMember(mv));
         return mv;
     }
 
